@@ -2,6 +2,7 @@
 
 [![Node.js Package](https://github.com/MCarlomagno/dwallet/actions/workflows/release.yml/badge.svg)](https://github.com/MCarlomagno/dwallet/actions/workflows/release.yml)
 [![Publish to Docker](https://github.com/MCarlomagno/dwallet/actions/workflows/publish.yml/badge.svg)](https://github.com/MCarlomagno/dwallet/actions/workflows/publish.yml)
+<br/>
 Simple typescript package for managing metamask connection in an easy and straightforward way.
 
 
