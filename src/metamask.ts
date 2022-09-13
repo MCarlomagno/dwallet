@@ -11,8 +11,24 @@ declare global {
   }
 };
 
+interface ProviderRpcError extends Error {
+  message: string;
+  code: number;
+  data?: unknown;
+}
+
+type ExtensionForProvider = {
+  on: (event: string, callback: (...params: any) => void) => void;
+};
+
+type GenericProvider = ExternalProvider & ExtensionForProvider;
+
 export enum Methods {
-  SendTransaction = 'eth_sendTransaction'
+  SendTransaction = 'eth_sendTransaction',
+  AccountsChanged = 'accountsChanged',
+  RequestAccounts = 'eth_requestAccounts',
+  NetworkChanged = 'networkChanged',
+  Disconnect = 'disconnect'
 }
 
 export class Connection {
@@ -36,7 +52,7 @@ export class Metamask {
   }
 
   async connect(): Promise<Connection> {
-    const accounts: string[] = await this.provider.send("eth_requestAccounts", []);
+    const accounts: string[] = await this.provider.send(Methods.RequestAccounts, []);
     const network: Network = await this.provider.getNetwork();
     const signer: JsonRpcSigner = this.provider.getSigner();
     this.connection = new Connection(accounts, network, signer);
@@ -50,5 +66,17 @@ export class Metamask {
       [{ from, to, value }]
     );
     return hash;
+  }
+
+  onAccountsChanged(callback: (acc: string[]) => void) {
+    (window.ethereum as GenericProvider).on(Methods.AccountsChanged, callback);
+  }
+
+  onNetworkChanged(callback: (net: number) => void) {
+    (window.ethereum as GenericProvider).on(Methods.NetworkChanged, callback);
+  }
+
+  onDisconnect(callback: (error: ProviderRpcError) => void) {
+    (window.ethereum as GenericProvider).on(Methods.Disconnect, callback);
   }
 }
