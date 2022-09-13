@@ -1,5 +1,5 @@
 {
-  "name": "dwallet",
+  "name": "@mcarlomagno/dwallet",
   "version": "0.0.6",
   "description": "",
   "main": "index.js",
