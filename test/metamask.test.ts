@@ -1,5 +1,6 @@
 import { parseUnits } from "ethers/lib/utils";
-import { Metamask, Methods } from "../src/metamask";
+import { Metamask } from "../src/metamask";
+import { Methods } from "../src/types";
 
 const mockProvider = {
   isMetaMask: true,
