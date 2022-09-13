@@ -3,6 +3,10 @@
   "version": "0.0.3",
   "description": "",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MCarlomagno/dwallet"
+  },
   "scripts": {
     "build": "npx tsc",
     "test": "jest ./test"
