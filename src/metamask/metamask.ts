@@ -8,18 +8,12 @@ import { parseUnits } from "@ethersproject/units";
 import { Connection } from "./connection";
 import { Methods, GenericProvider, ProviderRpcError } from "./types";
 
-declare global {
-  interface Window {
-    ethereum: ExternalProvider;
-  }
-}
-
 export class Metamask {
   provider: Web3Provider;
   connection: Connection | undefined;
 
   constructor() {
-    this.provider = new Web3Provider(window.ethereum);
+    this.provider = new Web3Provider(window.ethereum as ExternalProvider);
   }
 
   async connect(): Promise<Connection> {
