@@ -54,4 +54,4 @@ metamask.onDisconnect((err: Error) => {
 ```
 
 ## Contribuiting
-Issues and PRs are always welcomed, as well as suggestions.
+Issues and PRs are always welcome, as well as suggestions.
