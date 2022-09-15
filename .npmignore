@@ -7,6 +7,5 @@ test
 
 # files
 jest.config.js
-babel.config.js
 tsconfig.json
 .npmrc
