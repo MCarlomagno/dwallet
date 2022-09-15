@@ -3,3 +3,7 @@ lib
 coverage
 example
 .npmrc
+
+# demos folder
+demos/node_modules
+demos/public
