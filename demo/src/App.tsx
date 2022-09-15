@@ -1,13 +1,15 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Metamask } from 'dwallet';
+import { Metamask, Coinbase } from 'dwallet';
 import './App.css'
 
 function App() {
 
   const [metamask, setMetamask] = useState<Metamask>();
+  const [coinbase, setCoinbase] = useState<Coinbase>();
 
   useEffect(() => {
     setMetamask(new Metamask());
+    setCoinbase(new Coinbase('demo', process.env.INFURA_API_KEY ?? ''));
   }, []);
 
   const connect = useCallback(() => {
@@ -35,10 +37,19 @@ function App() {
     }
   }, [metamask]);
 
+  const connectCoinbase = useCallback(() => {
+    if (coinbase) {
+      coinbase.connect().then(console.log);
+    }
+  }, [coinbase]);
+
   return (
     <div className="App">
       <button onClick={connect}>
-        Connect
+        Connect Metamask
+      </button>
+      <button onClick={connectCoinbase}>
+        Connect Coinbase
       </button>
       <button onClick={sendTransaction}>
         Send transaction
