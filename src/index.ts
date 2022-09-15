@@ -3,7 +3,7 @@ import { ExternalProvider } from "@ethersproject/providers";
 
 declare global {
   interface Window {
-    readonly ethereum: ExternalProvider | CoinbaseWalletProvider;
+    ethereum?: ExternalProvider | CoinbaseWalletProvider;
   }
 }
 

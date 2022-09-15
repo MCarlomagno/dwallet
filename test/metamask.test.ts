@@ -1,21 +1,41 @@
 import { parseUnits } from "ethers/lib/utils";
-import { Metamask } from "../src/metamask";
-import { Methods } from "../src/types";
+import { Metamask, Methods } from "../src/metamask";
+import { CoinbaseWalletProvider } from '@coinbase/wallet-sdk';
+import { ExternalProvider } from "@ethersproject/providers";
 
-const mockProvider = {
-  isMetaMask: true,
-  send: () => {}
-};
+declare global {
+  interface Window{
+    ethereum?: ExternalProvider | CoinbaseWalletProvider;
+  }
+}
+
+let windowSpy: jest.SpyInstance;
 
 describe('Metamask', () => {
+  beforeEach(() => {
+    windowSpy = jest.spyOn(window, "window", "get");
+    windowSpy.mockImplementation(() => ({
+      ethereum: {
+        isMetaMask: true,
+        send: () => {}
+      },
+    }));
+  });
+
+  afterEach(() => {
+    windowSpy.mockRestore();
+  });
+
   it('should instance Metamask when provider exists', () => {
-    window.ethereum = mockProvider;
+    console.log(window.ethereum);
     const metamask = new Metamask();
     expect(metamask.provider).toBeTruthy();
   });
 
   it('should throw an error when provider does not exist', () => {
-    window.ethereum = {}; 
+    windowSpy.mockImplementation(() => ({
+      ethereum: undefined
+    }));
     const fn = () => {
       const metamask = new Metamask();
     }
@@ -23,7 +43,6 @@ describe('Metamask', () => {
   });
 
   it('should connect and create connection object', async () => {
-    window.ethereum = mockProvider;
     const metamask = new Metamask();
     const getNetworkMock = jest
       .spyOn(metamask.provider, 'getNetwork')
@@ -41,7 +60,6 @@ describe('Metamask', () => {
   });
 
   it('should send a transaction', async () => {
-    window.ethereum = mockProvider;
     const metamask = new Metamask();
     jest.spyOn(metamask.provider, 'getNetwork')
       .mockImplementation(async () => ({chainId: 1, name: 'eth'}));
