@@ -7,5 +7,10 @@ declare global {
   }
 }
 
-export * from './metamask';
-export * from './coinbase';
+import { Metamask } from './metamask';
+import { Coinbase } from './coinbase'; 
+
+export default { 
+  Metamask,
+  Coinbase
+};
