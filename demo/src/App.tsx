@@ -1,9 +1,8 @@
+import { Coinbase, Metamask } from 'dwallet';
 import { useCallback, useEffect, useState } from 'react';
-import { Metamask, Coinbase } from 'dwallet';
 import './App.css'
 
 function App() {
-
   const [metamask, setMetamask] = useState<Metamask>();
   const [coinbase, setCoinbase] = useState<Coinbase>();
 
