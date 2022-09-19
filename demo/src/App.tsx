@@ -1,4 +1,4 @@
-import { Coinbase, Metamask } from 'dwallet';
+import { Metamask, Coinbase } from 'dwallet';
 import { useCallback, useEffect, useState } from 'react';
 import './App.css'
 

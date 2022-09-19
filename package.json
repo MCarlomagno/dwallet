@@ -1,8 +1,13 @@
 {
   "name": "dwallet",
   "version": "0.0.14",
-  "description": "",
-  "main": "lib/index.js",
+  "description": "Set of APIs for decentralized wallet connections",
+  "main": "./lib/index.js",
+  "types": "./lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/MCarlomagno/dwallet"
@@ -12,6 +17,7 @@
     "access": "public"
   },
   "scripts": {
+    "clean": "rm -rf ./lib",
     "build": "npx tsc",
     "test": "jest ./test"
   },

@@ -1,21 +1,6 @@
 import CoinbaseWalletSDK from "@coinbase/wallet-sdk";
 import Web3Modal from "web3modal";
-
-interface CoinbaseOptions {
-  appName: string;
-  infuraId: string;
-}
-
-type Class<T> = new (...args: any[]) => T
-
-export class CoinbaseWallet {
-  package: Class<CoinbaseWalletSDK>;
-  options: CoinbaseOptions;
-  constructor(pkg: Class<CoinbaseWalletSDK>, options: CoinbaseOptions) {
-    this.package = pkg;
-    this.options = options;
-  }
-}
+import { CoinbaseWallet } from "./coinbaseWallet";
 
 export class Coinbase {
   private wallet: CoinbaseWallet;

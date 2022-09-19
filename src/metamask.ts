@@ -5,7 +5,7 @@ import {
   Web3Provider,
 } from "@ethersproject/providers";
 import { parseUnits } from "@ethersproject/units";
-import { Connection } from "./connection";
+import { Connection } from "./metamaskConnection";
 import { Methods, GenericProvider, ProviderRpcError } from "./types";
 
 export class Metamask {
