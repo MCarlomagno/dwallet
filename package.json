@@ -1,6 +1,6 @@
 {
   "name": "dwallet",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Set of APIs for decentralized wallet connections",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
