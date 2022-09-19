@@ -21,8 +21,8 @@
     "build": "npx tsc",
     "test": "jest ./test"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["dapp", "wallet", "metamask", "coinbase"],
+  "author": "Marcos Carlomagno <marcoscarlomagno1@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.19.0",
